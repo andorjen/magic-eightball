@@ -15,20 +15,22 @@ import {defaultAnswers, _choice, extractColors} from "./helpers";
 */
 
 function EightBall({answers=defaultAnswers}){
-    // const colors = extractColors(answers)
+    const colors = extractColors(answers)
 
     const [msg, setMsg]= useState("Think of a Question");
     const [color, setColor]= useState("black");
-    // const [colorCounter, setColorCounter] = useState(colors);
+    const [colorCounter, setColorCounter] = useState(colors);
     
     function handleClick(){
         const randAnswer = _choice(answers);
         setMsg(randAnswer.msg);
         setColor(randAnswer.color);
-        // colors[randAnswer.color] += 1;
-        // setColorCounter(colors)
-        // console.log(colorCounter)
-        // console.log(typeof colorCounter)
+
+        colorCounter[randAnswer.color]+=1;
+        setColorCounter(colorCounter)
+      
+        console.log(colorCounter)
+        console.log(typeof colorCounter)
     }
     function reset() {
         setMsg("Think of a Question");
