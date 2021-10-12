@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-import {defaultAnswers, _choice} from "./helpers";
+import {defaultAnswers, _choice, extractColors} from "./helpers";
 
 /** Display a magic EightBall with random color and msg combination 
  * 
@@ -15,13 +15,24 @@ import {defaultAnswers, _choice} from "./helpers";
 */
 
 function EightBall({answers=defaultAnswers}){
+    // const colors = extractColors(answers)
+
     const [msg, setMsg]= useState("Think of a Question");
     const [color, setColor]= useState("black");
-
+    // const [colorCounter, setColorCounter] = useState(colors);
+    
     function handleClick(){
         const randAnswer = _choice(answers);
         setMsg(randAnswer.msg);
         setColor(randAnswer.color);
+        // colors[randAnswer.color] += 1;
+        // setColorCounter(colors)
+        // console.log(colorCounter)
+        // console.log(typeof colorCounter)
+    }
+    function reset() {
+        setMsg("Think of a Question");
+        setColor("black");
     }
 
     const styles = {
@@ -37,15 +48,14 @@ function EightBall({answers=defaultAnswers}){
     }
 
     return(
-        <div style={styles} onClick={handleClick}>
-        <h3> {msg}</h3>
+        <div>
+            <div style={styles} onClick={handleClick}>
+            <h3> {msg}</h3>
+            </div>
+            <button onClick={reset}>Reset</button>
         </div>
+
     );
 }
-
-
-
-
-
 
 export default EightBall;

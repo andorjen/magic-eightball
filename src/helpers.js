@@ -28,4 +28,12 @@ function _choice(items){
     return items[Math.floor(Math.random()*items.length)]
 }
 
-export {defaultAnswers, _choice}
+function extractColors(items) {
+  let colorResult = {};
+  for (let item of items) {
+    colorResult[item.color] = 0;
+  }
+  return colorResult;
+}
+
+export {defaultAnswers, _choice, extractColors}
